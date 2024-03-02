@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script defer src="./main.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <style>
+    body {
+      background-color: #e0e0e0;
+    }
+  </style>
+  <body>
+    <!-- NAVBAAR -->
+    <div class="container">
+      <div class="d-flex justify-content-center">
+        <div class="col-9">
+          <nav
+            class="navbar navbar-expand-lg bg-body-tertiary pt-3 shadow rounded-bottom-3"
+          >
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Social Media</a>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#"
+                      >Home</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                  </li>
+                </ul>
+                <div class="w-100 d-flex justify-content-end gap-2" id="authDiv">
+                  <img src="./img/profile1.png" width="40px" height="40px" style="border-radius: 100%;" alt="">
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <!-- MAIN CONTENT -->
+    <div class="container mt-5">
+      <div class="d-flex justify-content-center">
+        <div class="col-10" id="posts">
+
+          <!-- <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+              <img
+                src="./img/profile1.png"
+                alt=""
+                width="45px"
+                class="rounded-circle border border-3"
+              />
+              <b>@gufranHACIAKIL</b>
+            </div>
+            <div class="card-body">
+              <div class="text-center">
+                <img
+                  src="./img/product3.jpg"
+                  alt=""
+                  width="450px"
+                  class="img-fluid rounded"
+                />
+              </div>
+              <h5 class="card-title">
+                <p style="font-size: 10px; color: rgb(201, 201, 201)">
+                  2min ago
+                </p>
+                Special title treatment
+              </h5>
+              <p class="card-text">
+                With supporting text below as a natural lead-in to additional
+                content.
+              </p>
+              <hr />
+              <div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-pencil"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"
+                  />
+                </svg>
+                (3)comments
+              </div>
+            </div>
+          </div> -->
+
+        </div>
+      </div>
+    </div>
+
+    <!-- MODALS -->
+       <!--LOGIN  -->
+          <div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">LOGIN</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body py-1">
+            <form>
+              <div class="mb-1">
+                <label for="username-input" class="col-form-label"
+                  >Username:</label
+                >
+                <input type="text" class="form-control" id="username_input" value="gufran" />
+              </div>
+              <div class="mb-3">
+                <label for="password-input" class="col-form-label"
+                  >Password:</label
+                >
+                <input type="password" class="form-control" id="password_input" value="123456"></input>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" id="loginBtn" onclick="loginButton()">login</button>
+          </div>
+        </div>
+      </div>
+          </div>
+        <!--  -->
+        <!-- REGISTER -->
+        <div
+        class="modal fade"
+        id="registerModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">REGISTER</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body py-1">
+              <form>
+                <div class="mb-4 mt-4">
+                  <input type="text" class="form-control" id="reg_name_input" placeholder="Name:" />
+                </div>
+                <div class="mb-4">
+                 
+                  <input type="text" class="form-control" id="reg_username_input" placeholder="Username:" />
+                </div>
+                <div class="mb-2">                
+                  <input type="email" class="form-control" id="reg_email_input" placeholder="Email:"/>
+                </div>
+                <div class="mb-4">
+                  <label for="reg-img-input" class="col-form-label"
+                    >Profile Image:</label
+                  >
+                  <input type="file" class="form-control" id="reg_img_input" />
+                </div>
+                <div class="mb-3">
+                  <input type="password" class="form-control" id="reg_password_input" placeholder="Password:"></input>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary" id="loginBtn" onclick="registerBtn()">register</button>
+            </div>
+          </div>
+        </div>
+        </div>
+        <!--  -->
+    <!--  -->
+    <div id="liveAlertPlaceholder" style="z-index:2000;" class="position-fixed right-0 left-0 top-0 w-25 show fade"></div>
+    <div style="position: fixed;top: 37rem;right: 1rem;" data-bs-toggle="modal"
+    data-bs-target="#addPostModal" id="addPost">
+     </div>
+     <!-- add post modal -->
+     <div
+     class="modal fade"
+     id="addPostModal"
+     tabindex="-1"
+     aria-labelledby="exampleModalLabel"
+     aria-hidden="true"
+   >
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h1 class="modal-title fs-5" id="exampleModalLabel">Add a New Post</h1>
+           <button
+             type="button"
+             class="btn-close"
+             data-bs-dismiss="modal"
+             aria-label="Close"
+           ></button>
+         </div>
+         <div class="modal-body py-1">
+           <form>
+             <div class="mb-1">
+               <label for="title-input" class="col-form-label"
+                 >Title:</label
+               >
+               <input type="text" class="form-control" id="title_input" />
+             </div>
+             <div class="mb-1">
+               <label for="body-input" class="col-form-label"
+                 >body:</label
+               ><br>
+               <textarea id="body_input" cols="60" rows="5"></textarea>
+             </div>
+             <div class="mb-1">
+              <label for="img-input" class="col-form-label"
+                >image:</label
+              >
+              <input type="file" class="form-control" id="img_input" />
+            </div>
+           </form>
+         </div>
+         <div class="modal-footer">
+           <button
+             type="button"
+             class="btn btn-secondary"
+             data-bs-dismiss="modal"
+           >
+             Close
+           </button>
+           <button type="button" class="btn btn-primary" id="loginBtn" onclick="addPostBtnClicked()">Add</button>
+         </div>
+       </div>
+     </div>
+         </div>
+     <!--  -->
+  </body>
+  <script></script>
+</html>
